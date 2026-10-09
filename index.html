@@ -192,44 +192,30 @@ section{padding-block:clamp(80px,11vw,150px);scroll-margin-top:72px}
 .summary{margin-top:28px;padding-top:22px;border-top:1px solid rgba(239,230,211,.22);display:grid;gap:12px;font-variant-numeric:tabular-nums}
 .summary div{display:flex;justify-content:space-between;gap:16px;color:var(--on-pine-muted)}
 .summary .total{color:var(--on-pine);font-size:18px;padding-top:16px;border-top:1px solid rgba(239,230,211,.22);align-items:baseline}
-.summary .total span:last-child{font-family:var(--display);font-size:32px;text-align:right}
+.summary .total span:last-child{font-family:var(--display);font-size:32px;text-align:right;white-space:nowrap}
 .fine{font-size:14px;color:var(--on-pine-muted);margin-top:14px}
 .assure{list-style:none;margin:28px 0 0;padding:0;display:grid;gap:10px;font-size:15px;color:var(--on-pine-muted)}
 .assure li{display:flex;gap:12px;align-items:flex-start}
 .assure svg{width:16px;height:16px;flex:none;margin-top:5px;stroke:var(--on-pine-gilt);fill:none;stroke-width:1.8}
-form{display:grid;gap:20px}
 .field{display:grid;gap:8px;min-width:0}
 .field label{font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--on-pine-muted)}
-.field label i{font-style:normal;letter-spacing:.06em;text-transform:none;opacity:.8}
-.field input,.field textarea{width:100%;min-height:52px;background:rgba(239,230,211,.06);border:1px solid rgba(239,230,211,.28);color:var(--on-pine);font:300 16px/1.4 var(--body);padding:14px 16px;border-radius:0;color-scheme:dark;transition:border-color .2s,background .2s;-webkit-appearance:none;appearance:none}
-.field input:hover,.field textarea:hover{border-color:rgba(239,230,211,.5)}
-.field input:focus,.field textarea:focus{outline:none;border-color:var(--on-pine-gilt);background:rgba(239,230,211,.09)}
-.field input[aria-invalid="true"]{border-color:#e7a594}
-.field .err{font-size:14px;color:#f1b8a9}
-.field textarea::placeholder{color:#9fa391}
-.row2{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.field input{width:100%;min-height:52px;background:rgba(239,230,211,.06);border:1px solid rgba(239,230,211,.28);color:var(--on-pine);font:300 16px/1.4 var(--body);padding:14px 16px;border-radius:0;color-scheme:dark;transition:border-color .2s,background .2s;-webkit-appearance:none;appearance:none}
+.field input:hover{border-color:rgba(239,230,211,.5)}
+.field input:focus{outline:none;border-color:var(--on-pine-gilt);background:rgba(239,230,211,.09)}
+.qty-field{max-width:220px}
+.deposit{margin-top:26px;display:grid;gap:12px;font-variant-numeric:tabular-nums}
+.deposit span:last-child{white-space:nowrap}
+.deposit div{display:flex;justify-content:space-between;align-items:baseline;gap:16px;color:var(--on-pine-muted)}
+.deposit div:first-child{color:var(--on-pine);font-size:18px;padding-bottom:14px;border-bottom:1px solid rgba(239,230,211,.22)}
+.deposit b{font-family:var(--display);font-weight:400;font-size:40px;line-height:1;color:var(--on-pine)}
+.order .pay-btn{width:100%;margin-top:28px;min-height:58px}
+.deposit-note{margin-top:18px;padding:16px 18px;border-left:2px solid var(--on-pine-gilt);background:rgba(239,230,211,.05);font-size:15px;color:var(--on-pine-muted)}
+.deposit-note strong{font-weight:500;color:var(--on-pine)}
+.order .assure a{color:var(--on-pine);text-underline-offset:3px}
 .order .btn{background:var(--on-pine);color:var(--pine);border-color:var(--on-pine)}
 .order .btn:hover{background:#fff8ea;border-color:#fff8ea;box-shadow:0 14px 30px -16px rgba(0,0,0,.6)}
-.order .btn.ghost{background:transparent;color:var(--on-pine);border-color:rgba(239,230,211,.4)}
-.order .btn.ghost:hover{border-color:var(--on-pine);background:rgba(239,230,211,.06)}
-form .btn{width:100%}
-.form-note{font-size:13px;color:var(--on-pine-muted);text-align:center;margin-top:-4px}
 @media (max-width:900px){.order-grid{grid-template-columns:1fr}}
-@media (max-width:540px){.row2{grid-template-columns:1fr}.opt{grid-template-columns:auto 1fr;padding:18px}.opt .amt{grid-column:2;font-size:20px}.panel{padding:22px 18px;margin-inline:-4px}}
-#form-area{scroll-margin-top:90px}
-.confirm{display:grid;gap:18px}
-.confirm:focus{outline:none}
-.confirm h3{font-size:clamp(30px,3.4vw,38px);color:var(--on-pine)}
-.confirm h3 em{color:var(--on-pine-gilt)}
-.confirm pre{white-space:pre-wrap;word-break:break-word;font:300 15px/1.65 var(--body);background:rgba(239,230,211,.06);border:1px solid rgba(239,230,211,.22);padding:18px;margin:0;color:var(--on-pine)}
-.contact-cards{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.contact-cards a{display:grid;gap:4px;padding:16px 18px;border:1px solid rgba(239,230,211,.28);text-decoration:none;min-width:0;transition:border-color .2s,background .2s}
-.contact-cards a:hover{border-color:var(--on-pine-gilt);background:rgba(239,230,211,.05)}
-.contact-cards small{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--on-pine-gilt)}
-.contact-cards span{font-size:17px;overflow-wrap:anywhere}
-.confirm .acts{display:flex;gap:12px;flex-wrap:wrap}
-.confirm .acts .btn{flex:1 1 180px}
-@media (max-width:540px){.contact-cards{grid-template-columns:1fr}}
+@media (max-width:540px){.opt{grid-template-columns:auto 1fr;padding:18px}.opt .amt{grid-column:2;font-size:20px}.panel{padding:24px 18px;margin-inline:-4px}.deposit b{font-size:34px}.summary .total span:last-child{font-size:26px}.order .pay-btn{letter-spacing:.14em;padding-inline:14px;white-space:nowrap}.qty-field{max-width:none}}
 
 /* 4. how it works */
 .steps{display:grid;grid-template-columns:repeat(3,1fr);margin-top:60px;counter-reset:s}
@@ -436,7 +422,7 @@ footer ul svg{width:16px;height:16px;flex:none;stroke:var(--on-pine-gilt);fill:n
       <div class="sec-head reveal">
         <p class="eyebrow">Reserve Your Box</p>
         <h2>Reserve your box <em>today</em>.</h2>
-        <p>Holiday dates fill quickly. Reserve now and we'll confirm your delivery window personally.</p>
+        <p>Holiday dates fill quickly. Reserve with a deposit and we'll confirm your delivery date personally.</p>
       </div>
       <div class="order-grid">
         <div class="reveal">
@@ -459,28 +445,22 @@ footer ul svg{width:16px;height:16px;flex:none;stroke:var(--on-pine-gilt);fill:n
             <div><span id="sum-label">Delivery &amp; setup</span><span id="sum-fee">$90&ndash;$120</span></div>
             <div class="total"><span>Estimated total</span><span id="sum-total">$989&ndash;$1,019</span></div>
           </div>
-          <p class="fine" id="fee-note">Delivery is $90 to $120 depending on your address. We confirm the exact fee before you pay.</p>
-          <ul class="assure">
-            <li><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5l3 3 7-7"/></svg>No payment today. We confirm everything with you first.</li>
-            <li><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5l3 3 7-7"/></svg>A real person replies, usually the same day.</li>
-          </ul>
+          <p class="fine" id="fee-note">Delivery is $90 to $120 depending on your address. We confirm the exact fee before we invoice the balance.</p>
         </div>
-        <div class="panel reveal" id="form-area">
-          <form id="order-form" novalidate>
-            <p class="step-label" style="margin-bottom:0">2 &middot; Your details</p>
-            <div class="row2">
-              <div class="field"><label for="f-name">Full name</label><input id="f-name" name="fullname" autocomplete="name" required aria-describedby="f-name-err"><p class="err" id="f-name-err" hidden></p></div>
-              <div class="field"><label for="f-phone">Phone</label><input id="f-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" required aria-describedby="f-phone-err"><p class="err" id="f-phone-err" hidden></p></div>
-            </div>
-            <div class="field" id="addr-field"><label for="f-address">Delivery address</label><input id="f-address" name="address" autocomplete="street-address" aria-describedby="f-address-err"><p class="err" id="f-address-err" hidden></p></div>
-            <div class="row2">
-              <div class="field"><label for="f-qty">Number of boxes</label><input id="f-qty" name="qty" type="number" inputmode="numeric" min="1" max="10" value="1"></div>
-              <div class="field"><label for="f-date">Preferred date <i>(optional)</i></label><input id="f-date" name="date" type="date"></div>
-            </div>
-            <div class="field"><label for="f-notes">Notes <i>(optional)</i></label><textarea id="f-notes" name="notes" rows="3" placeholder="Placement on your lawn, gate codes, color requests"></textarea></div>
-            <button class="btn" type="submit">Prepare My Reservation <span class="arr" aria-hidden="true">&rarr;</span></button>
-            <p class="form-note">Nothing is charged. You'll send these details to us in the next step.</p>
-          </form>
+        <div class="panel reveal" id="deposit-area">
+          <p class="step-label">2 &middot; Pay your deposit</p>
+          <div class="field qty-field"><label for="f-qty">Number of boxes</label><input id="f-qty" name="qty" type="number" inputmode="numeric" min="1" max="10" value="1"></div>
+          <div class="deposit" aria-live="polite">
+            <div><span>Deposit due today</span><b id="dep-today">$450</b></div>
+            <div><span>Estimated balance, invoiced later</span><span id="dep-balance">$539&ndash;$569</span></div>
+          </div>
+          <a class="btn pay-btn" id="pay-btn" href="https://buy.stripe.com/8x29ATcSm3Tm4H22VNfMA0p">Pay Deposit &amp; Reserve <span class="arr" aria-hidden="true">&rarr;</span></a>
+          <p class="deposit-note"><strong>$450 deposit per box today.</strong> The remaining balance, plus delivery and setup ($90&ndash;$120, or free pickup in Canton) and Michigan sales tax, is invoiced once we confirm your date.</p>
+          <ul class="assure">
+            <li><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M5 7V5a3 3 0 0 1 6 0v2M4 7h8v7H4z"/></svg>Secure checkout by Stripe. Set the number of boxes and enter your contact and delivery details there.</li>
+            <li><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5l3 3 7-7"/></svg>We text you within 24 hours to confirm your delivery date.</li>
+            <li><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5l3 3 7-7"/></svg><span>Questions first? Call or text <a href="tel:+17342589914" style="white-space:nowrap">(734) 258-9914</a>.</span></li>
+          </ul>
         </div>
       </div>
     </div>
@@ -494,7 +474,7 @@ footer ul svg{width:16px;height:16px;flex:none;stroke:var(--on-pine-gilt);fill:n
         <h2>From order to lawn in a <em>couple of days</em>.</h2>
       </div>
       <div class="steps reveal">
-        <div class="step"><div class="n">i.</div><h3>Reserve</h3><p>Choose pickup or delivery and send us your details. We confirm your date and the delivery fee for your address.</p></div>
+        <div class="step"><div class="n">i.</div><h3>Reserve</h3><p>Choose pickup or delivery and pay a $450 deposit per box. We text you within 24 hours to confirm your date and the delivery fee for your address.</p></div>
         <div class="step"><div class="n">ii.</div><h3>We finish your box</h3><p>Your box is built, painted and inspected before it leaves. Estimated turnaround is 1&ndash;2 days.</p></div>
         <div class="step"><div class="n">iii.</div><h3>Delivered &amp; set up</h3><p>Our team places it where you want it and makes sure it sits level. Or pick it up yourself in Canton.</p></div>
       </div>
@@ -518,7 +498,7 @@ footer ul svg{width:16px;height:16px;flex:none;stroke:var(--on-pine-gilt);fill:n
       <div class="faq reveal">
         <details><summary>Will it hold up outside all winter?</summary><p>Yes. Every box is sealed, primed and painted with exterior-grade paint, and the edges are sealed so they don't soak up moisture. It is built to stand on a lawn from November through January.</p></details>
         <details><summary>How fast can I get it?</summary><p>Estimated delivery is 1 to 2 days after we confirm your order. During the busiest weeks of December, reserve early to lock in your date.</p></details>
-        <details><summary>How much is delivery?</summary><p>Delivery and setup is $90 to $120, depending on your address. We confirm the exact amount when we confirm your order. Pickup in Canton is free and included in the $899 price.</p></details>
+        <details><summary>How much is delivery?</summary><p>Delivery and setup is $90 to $120, depending on your address. We confirm the exact amount when we confirm your date, and invoice it with your remaining balance. Pickup in Canton is free and included in the $899 price.</p></details>
         <details><summary>Where do I keep it after the holidays?</summary><p>The box bolts together, so it comes apart into flat panels in a few minutes. The panels stand against a garage or basement wall until next season.</p></details>
         <details><summary>What if I'm ready to replace it someday?</summary><p>Our sister company, Beisi Removal, can haul it away for you when you're done with it.</p></details>
       </div>
@@ -614,11 +594,6 @@ footer ul svg{width:16px;height:16px;flex:none;stroke:var(--on-pine-gilt);fill:n
 
 <script>
 (function(){
-  // Business contact shown after a customer prepares a reservation.
-  var CONTACT_PHONE = "(734) 258-9914";
-  var CONTACT_PHONE_LINK = "+17342589914";
-  var CONTACT_EMAIL = "contact@beisiremoval.com";
-
   /* ---------- views: home scroll vs. product page ---------- */
   var home = document.getElementById("home-view");
   var product = document.getElementById("product-view");
@@ -704,96 +679,28 @@ footer ul svg{width:16px;height:16px;flex:none;stroke:var(--on-pine-gilt);fill:n
     revealEls.forEach(function(el){ el.classList.add("in"); });
   }
 
-  /* ---------- reservation estimate ---------- */
-  var PRICE = 899, FEE_LO = 90, FEE_HI = 120;
+  /* ---------- reservation estimate + deposit ---------- */
+  var PRICE = 899, FEE_LO = 90, FEE_HI = 120, DEPOSIT = 450;
   var fmt = function(n){ return "$" + n.toLocaleString("en-US"); };
+  var range = function(lo, hi){ return lo === hi ? fmt(lo) : fmt(lo) + "–" + fmt(hi); };
   var qtyEl = document.getElementById("f-qty");
-  var addrField = document.getElementById("addr-field");
-  var dateEl = document.getElementById("f-date");
-  var today = new Date(); today.setMinutes(today.getMinutes() - today.getTimezoneOffset());
-  dateEl.min = today.toISOString().slice(0,10);
   function method(){ return document.querySelector('input[name="method"]:checked').value; }
   function qty(){ var q = parseInt(qtyEl.value,10); return (q>0 && q<=10) ? q : 1; }
   function update(){
     var q = qty(), base = PRICE*q, isDel = method()==="delivery";
+    var lo = base + (isDel ? FEE_LO : 0), hi = base + (isDel ? FEE_HI : 0), dep = DEPOSIT*q;
     document.getElementById("sum-item").textContent = "Signature Gift Box" + (q>1 ? " × " + q : "");
     document.getElementById("sum-base").textContent = fmt(base);
     document.getElementById("sum-label").textContent = isDel ? "Delivery & setup" : "Pickup in Canton";
-    document.getElementById("sum-fee").textContent = isDel ? fmt(FEE_LO)+"–"+fmt(FEE_HI) : "Free";
-    document.getElementById("sum-total").textContent = isDel ? fmt(base+FEE_LO)+"–"+fmt(base+FEE_HI) : fmt(base);
+    document.getElementById("sum-fee").textContent = isDel ? range(FEE_LO, FEE_HI) : "Free";
+    document.getElementById("sum-total").textContent = range(lo, hi);
     document.getElementById("fee-note").hidden = !isDel;
-    addrField.hidden = !isDel;
+    document.getElementById("dep-today").textContent = fmt(dep);
+    document.getElementById("dep-balance").textContent = range(lo - dep, hi - dep) + " + tax";
   }
   document.querySelectorAll('input[name="method"]').forEach(function(r){ r.addEventListener("change", update); });
   qtyEl.addEventListener("input", update);
   update();
-
-  /* ---------- inline validation ---------- */
-  function setError(id, msg){
-    var input = document.getElementById(id), err = document.getElementById(id + "-err");
-    if(msg){ input.setAttribute("aria-invalid","true"); err.textContent = msg; err.hidden = false; }
-    else { input.removeAttribute("aria-invalid"); err.textContent = ""; err.hidden = true; }
-    return !msg;
-  }
-  ["f-name","f-phone","f-address"].forEach(function(id){
-    document.getElementById(id).addEventListener("input", function(){ if(this.getAttribute("aria-invalid")) setError(id, ""); });
-  });
-
-  /* ---------- reservation summary ---------- */
-  document.getElementById("order-form").addEventListener("submit", function(e){
-    e.preventDefault();
-    var val = function(id){ return document.getElementById(id).value.trim(); };
-    var name = val("f-name"), phone = val("f-phone"), addr = val("f-address");
-    var isDel = method()==="delivery";
-    var digits = phone.replace(/\D/g,"");
-    var ok = [
-      setError("f-name", name ? "" : "Please enter your name."),
-      setError("f-phone", !phone ? "Please enter a phone number so we can confirm." : (digits.length < 10 ? "Please enter a full 10-digit phone number." : "")),
-      setError("f-address", (isDel && !addr) ? "Please enter the delivery address." : "")
-    ];
-    var firstBad = ["f-name","f-phone","f-address"][ok.indexOf(false)];
-    if(firstBad){ document.getElementById(firstBad).focus(); return; }
-
-    var lines = [
-      "Beisi Decorations reservation",
-      "Name: " + name,
-      "Phone: " + phone,
-      "Boxes: " + qty(),
-      "Method: " + (isDel ? "Delivery & setup" : "Pickup in Canton"),
-      isDel ? "Address: " + addr : null,
-      val("f-date") ? "Preferred date: " + val("f-date") : null,
-      val("f-notes") ? "Notes: " + val("f-notes") : null,
-      "Estimated total: " + document.getElementById("sum-total").textContent
-    ].filter(Boolean).join("\n");
-
-    var area = document.getElementById("form-area");
-    var formEl = document.getElementById("order-form");
-    formEl.hidden = true;
-    var el = function(tag, cls, text){ var n = document.createElement(tag); if(cls) n.className = cls; if(text) n.textContent = text; return n; };
-    var box = el("div","confirm"); box.tabIndex = -1; box.setAttribute("role","status");
-    var h = el("h3"); h.append("One last step, ", el("em",null,name.split(" ")[0]), ".");
-    var p = el("p","fine","Send these details to us by text or email. We'll reply to confirm your date and delivery fee."); p.style.marginTop = "0";
-    var pre = el("pre",null,lines);
-    var cards = el("div","contact-cards");
-    var text = el("a"); text.href = "sms:" + CONTACT_PHONE_LINK + "?&body=" + encodeURIComponent(lines);
-    text.append(el("small",null,"Text or call"), el("span",null,CONTACT_PHONE));
-    var mail = el("a"); mail.href = "mailto:" + CONTACT_EMAIL + "?subject=" + encodeURIComponent("Gift box reservation: " + name) + "&body=" + encodeURIComponent(lines);
-    mail.append(el("small",null,"Email"), el("span",null,CONTACT_EMAIL));
-    cards.append(text, mail);
-    var acts = el("div","acts");
-    var copy = el("button","btn","Copy Details"); copy.type = "button";
-    copy.addEventListener("click", function(){
-      var fallback = function(){ var r = document.createRange(); r.selectNodeContents(pre); var s = getSelection(); s.removeAllRanges(); s.addRange(r); copy.textContent = "Selected, press Copy"; };
-      try { navigator.clipboard.writeText(lines).then(function(){ copy.textContent = "Copied"; }, fallback); } catch(_) { fallback(); }
-    });
-    var back = el("button","btn ghost","Edit Details"); back.type = "button";
-    back.addEventListener("click", function(){ box.remove(); formEl.hidden = false; document.getElementById("f-name").focus(); });
-    acts.append(copy, back);
-    box.append(h, p, pre, cards, acts);
-    area.append(box);
-    box.focus({preventScroll:true});
-    area.scrollIntoView({behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block:"start"});
-  });
 })();
 </script>
 </body>
