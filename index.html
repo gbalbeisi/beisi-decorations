@@ -210,6 +210,7 @@ section{padding-block:clamp(80px,11vw,150px);scroll-margin-top:72px}
 .deposit b{font-family:var(--display);font-weight:400;font-size:40px;line-height:1;color:var(--on-pine)}
 .order .pay-btn{width:100%;margin-top:28px;min-height:58px}
 .deposit-note{margin-top:18px;padding:16px 18px;border-left:2px solid var(--on-pine-gilt);background:rgba(239,230,211,.05);font-size:15px;color:var(--on-pine-muted)}
+.fee-fine{margin:10px 0 0;text-align:center;font-size:13px;color:var(--on-pine-muted)}
 .deposit-note strong{font-weight:500;color:var(--on-pine)}
 .order .assure a{color:var(--on-pine);text-underline-offset:3px}
 .order .btn{background:var(--on-pine);color:var(--pine);border-color:var(--on-pine)}
@@ -451,11 +452,12 @@ footer ul svg{width:16px;height:16px;flex:none;stroke:var(--on-pine-gilt);fill:n
           <p class="step-label">2 &middot; Pay your deposit</p>
           <div class="field qty-field"><label for="f-qty">Number of boxes</label><input id="f-qty" name="qty" type="number" inputmode="numeric" min="1" max="10" value="1"></div>
           <div class="deposit" aria-live="polite">
-            <div><span>Deposit due today</span><b id="dep-today">$450</b></div>
+            <div><span>Deposit due today</span><b id="dep-today">$463.50</b></div>
             <div><span>Estimated balance, invoiced later</span><span id="dep-balance">$539&ndash;$569</span></div>
           </div>
-          <a class="btn pay-btn" id="pay-btn" href="https://buy.stripe.com/8x29ATcSm3Tm4H22VNfMA0p">Pay Deposit &amp; Reserve <span class="arr" aria-hidden="true">&rarr;</span></a>
-          <p class="deposit-note"><strong>$450 deposit per box today.</strong> The remaining balance, plus delivery and setup ($90&ndash;$120, or free pickup in Canton) and Michigan sales tax, is invoiced once we confirm your date.</p>
+          <a class="btn pay-btn" id="pay-btn" href="https://book.stripe.com/3cIeVd7y2ey06PacwnfMA0q">Book Your Box <span class="arr" aria-hidden="true">&rarr;</span></a>
+          <p class="fee-fine">Deposit includes a 3% card processing fee.</p>
+          <p class="deposit-note"><strong>$463.50 deposit per box today.</strong> The remaining balance, plus delivery and setup ($90&ndash;$120, or free pickup in Canton) and Michigan sales tax, is invoiced once we confirm your date.</p>
           <ul class="assure">
             <li><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M5 7V5a3 3 0 0 1 6 0v2M4 7h8v7H4z"/></svg>Secure checkout by Stripe. Set the number of boxes and enter your contact and delivery details there.</li>
             <li><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5l3 3 7-7"/></svg>We text you within 24 hours to confirm your delivery date.</li>
@@ -474,7 +476,7 @@ footer ul svg{width:16px;height:16px;flex:none;stroke:var(--on-pine-gilt);fill:n
         <h2>From order to lawn in a <em>couple of days</em>.</h2>
       </div>
       <div class="steps reveal">
-        <div class="step"><div class="n">i.</div><h3>Reserve</h3><p>Choose pickup or delivery and pay a $450 deposit per box. We text you within 24 hours to confirm your date and the delivery fee for your address.</p></div>
+        <div class="step"><div class="n">i.</div><h3>Reserve</h3><p>Choose pickup or delivery and pay a $463.50 deposit per box. We text you within 24 hours to confirm your date and the delivery fee for your address.</p></div>
         <div class="step"><div class="n">ii.</div><h3>We finish your box</h3><p>Your box is built, painted and inspected before it leaves. Estimated turnaround is 1&ndash;2 days.</p></div>
         <div class="step"><div class="n">iii.</div><h3>Delivered &amp; set up</h3><p>Our team places it where you want it and makes sure it sits level. Or pick it up yourself in Canton.</p></div>
       </div>
@@ -680,8 +682,11 @@ footer ul svg{width:16px;height:16px;flex:none;stroke:var(--on-pine-gilt);fill:n
   }
 
   /* ---------- reservation estimate + deposit ---------- */
-  var PRICE = 899, FEE_LO = 90, FEE_HI = 120, DEPOSIT = 450;
+  var PRICE = 899, FEE_LO = 90, FEE_HI = 120, DEPOSIT = 450, CARD_FEE = 0.03;
+  // Deposit charged includes the card fee; only the $450 is credited toward the balance.
+  var DEPOSIT_CHARGED = DEPOSIT * (1 + CARD_FEE);
   var fmt = function(n){ return "$" + n.toLocaleString("en-US"); };
+  var fmtCents = function(n){ return "$" + n.toLocaleString("en-US", {minimumFractionDigits:2, maximumFractionDigits:2}); };
   var range = function(lo, hi){ return lo === hi ? fmt(lo) : fmt(lo) + "–" + fmt(hi); };
   var qtyEl = document.getElementById("f-qty");
   function method(){ return document.querySelector('input[name="method"]:checked').value; }
@@ -695,7 +700,7 @@ footer ul svg{width:16px;height:16px;flex:none;stroke:var(--on-pine-gilt);fill:n
     document.getElementById("sum-fee").textContent = isDel ? range(FEE_LO, FEE_HI) : "Free";
     document.getElementById("sum-total").textContent = range(lo, hi);
     document.getElementById("fee-note").hidden = !isDel;
-    document.getElementById("dep-today").textContent = fmt(dep);
+    document.getElementById("dep-today").textContent = fmtCents(Math.round(DEPOSIT_CHARGED*q*100)/100);
     document.getElementById("dep-balance").textContent = range(lo - dep, hi - dep) + " + tax";
   }
   document.querySelectorAll('input[name="method"]').forEach(function(r){ r.addEventListener("change", update); });
