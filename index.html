@@ -211,6 +211,8 @@ section{padding-block:clamp(80px,11vw,150px);scroll-margin-top:72px}
 .order .pay-btn{width:100%;margin-top:28px;min-height:58px}
 .deposit-note{margin-top:18px;padding:16px 18px;border-left:2px solid var(--on-pine-gilt);background:rgba(239,230,211,.05);font-size:15px;color:var(--on-pine-muted)}
 .fee-fine{margin:10px 0 0;text-align:center;font-size:13px;color:var(--on-pine-muted)}
+.deposit .bal{white-space:normal;text-align:right}
+.deposit .bal small{display:block;margin-top:4px;font-size:13px;line-height:1.35}
 .deposit-note strong{font-weight:500;color:var(--on-pine)}
 .order .assure a{color:var(--on-pine);text-underline-offset:3px}
 .order .btn{background:var(--on-pine);color:var(--pine);border-color:var(--on-pine)}
@@ -453,7 +455,7 @@ footer ul svg{width:16px;height:16px;flex:none;stroke:var(--on-pine-gilt);fill:n
           <div class="field qty-field"><label for="f-qty">Number of boxes</label><input id="f-qty" name="qty" type="number" inputmode="numeric" min="1" max="10" value="1"></div>
           <div class="deposit" aria-live="polite">
             <div><span>Deposit due today</span><b id="dep-today">$463.50</b></div>
-            <div><span>Estimated balance, invoiced later</span><span id="dep-balance">$539&ndash;$569</span></div>
+            <div><span>Estimated balance, invoiced later</span><span class="bal"><span id="dep-balance">$539&ndash;$569 + tax</span> <small>(3% card fee applies if paid by card)</small></span></div>
           </div>
           <a class="btn pay-btn" id="pay-btn" href="https://book.stripe.com/3cIeVd7y2ey06PacwnfMA0q">Book Your Box <span class="arr" aria-hidden="true">&rarr;</span></a>
           <p class="fee-fine">Deposit includes a 3% card processing fee.</p>
