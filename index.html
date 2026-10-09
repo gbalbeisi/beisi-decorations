@@ -202,7 +202,6 @@ section{padding-block:clamp(80px,11vw,150px);scroll-margin-top:72px}
 .field input{width:100%;min-height:52px;background:rgba(239,230,211,.06);border:1px solid rgba(239,230,211,.28);color:var(--on-pine);font:300 16px/1.4 var(--body);padding:14px 16px;border-radius:0;color-scheme:dark;transition:border-color .2s,background .2s;-webkit-appearance:none;appearance:none}
 .field input:hover{border-color:rgba(239,230,211,.5)}
 .field input:focus{outline:none;border-color:var(--on-pine-gilt);background:rgba(239,230,211,.09)}
-.qty-field{max-width:220px}
 .deposit{margin-top:26px;display:grid;gap:12px;font-variant-numeric:tabular-nums}
 .deposit span:last-child{white-space:nowrap}
 .deposit div{display:flex;justify-content:space-between;align-items:baseline;gap:16px;color:var(--on-pine-muted)}
@@ -211,6 +210,7 @@ section{padding-block:clamp(80px,11vw,150px);scroll-margin-top:72px}
 .order .pay-btn{width:100%;margin-top:28px;min-height:58px}
 .deposit-note{margin-top:18px;padding:16px 18px;border-left:2px solid var(--on-pine-gilt);background:rgba(239,230,211,.05);font-size:15px;color:var(--on-pine-muted)}
 .fee-fine{margin:10px 0 0;text-align:center;font-size:13px;color:var(--on-pine-muted)}
+.fee-fine + .fee-fine{margin-top:2px}
 .deposit .bal{white-space:normal;text-align:right}
 .deposit .bal small{display:block;margin-top:4px;font-size:13px;line-height:1.35}
 .deposit-note strong{font-weight:500;color:var(--on-pine)}
@@ -218,7 +218,7 @@ section{padding-block:clamp(80px,11vw,150px);scroll-margin-top:72px}
 .order .btn{background:var(--on-pine);color:var(--pine);border-color:var(--on-pine)}
 .order .btn:hover{background:#fff8ea;border-color:#fff8ea;box-shadow:0 14px 30px -16px rgba(0,0,0,.6)}
 @media (max-width:900px){.order-grid{grid-template-columns:1fr}}
-@media (max-width:540px){.opt{grid-template-columns:auto 1fr;padding:18px}.opt .amt{grid-column:2;font-size:20px}.panel{padding:24px 18px;margin-inline:-4px}.deposit b{font-size:34px}.summary .total span:last-child{font-size:26px}.order .pay-btn{letter-spacing:.14em;padding-inline:14px;white-space:nowrap}.qty-field{max-width:none}}
+@media (max-width:540px){.opt{grid-template-columns:auto 1fr;padding:18px}.opt .amt{grid-column:2;font-size:20px}.panel{padding:24px 18px;margin-inline:-4px}.deposit b{font-size:34px}.summary .total span:last-child{font-size:26px}.order .pay-btn{letter-spacing:.14em;padding-inline:14px;white-space:nowrap}}
 
 /* 4. how it works */
 .steps{display:grid;grid-template-columns:repeat(3,1fr);margin-top:60px;counter-reset:s}
@@ -452,12 +452,12 @@ footer ul svg{width:16px;height:16px;flex:none;stroke:var(--on-pine-gilt);fill:n
         </div>
         <div class="panel reveal" id="deposit-area">
           <p class="step-label">2 &middot; Pay your deposit</p>
-          <div class="field qty-field"><label for="f-qty">Number of boxes</label><input id="f-qty" name="qty" type="number" inputmode="numeric" min="1" max="10" value="1"></div>
           <div class="deposit" aria-live="polite">
             <div><span>Deposit due today</span><b id="dep-today">$463.50</b></div>
             <div><span>Estimated balance, invoiced later</span><span class="bal"><span id="dep-balance">$539&ndash;$569 + tax</span> <small>(3% card fee applies if paid by card)</small></span></div>
           </div>
           <a class="btn pay-btn" id="pay-btn" href="https://book.stripe.com/3cIeVd7y2ey06PacwnfMA0q">Book Your Box <span class="arr" aria-hidden="true">&rarr;</span></a>
+          <p class="fee-fine">Choose how many boxes on the next screen.</p>
           <p class="fee-fine">Deposit includes a 3% card processing fee.</p>
           <p class="deposit-note"><strong>$463.50 deposit per box today.</strong> The remaining balance, plus delivery and setup ($90&ndash;$120, or free pickup in Canton) and Michigan sales tax, is invoiced once we confirm your date.</p>
           <ul class="assure">
@@ -690,23 +690,18 @@ footer ul svg{width:16px;height:16px;flex:none;stroke:var(--on-pine-gilt);fill:n
   var fmt = function(n){ return "$" + n.toLocaleString("en-US"); };
   var fmtCents = function(n){ return "$" + n.toLocaleString("en-US", {minimumFractionDigits:2, maximumFractionDigits:2}); };
   var range = function(lo, hi){ return lo === hi ? fmt(lo) : fmt(lo) + "–" + fmt(hi); };
-  var qtyEl = document.getElementById("f-qty");
   function method(){ return document.querySelector('input[name="method"]:checked').value; }
-  function qty(){ var q = parseInt(qtyEl.value,10); return (q>0 && q<=10) ? q : 1; }
   function update(){
-    var q = qty(), base = PRICE*q, isDel = method()==="delivery";
-    var lo = base + (isDel ? FEE_LO : 0), hi = base + (isDel ? FEE_HI : 0), dep = DEPOSIT*q;
-    document.getElementById("sum-item").textContent = "Signature Gift Box" + (q>1 ? " × " + q : "");
-    document.getElementById("sum-base").textContent = fmt(base);
+    var isDel = method()==="delivery";
+    var lo = PRICE + (isDel ? FEE_LO : 0), hi = PRICE + (isDel ? FEE_HI : 0), dep = DEPOSIT;
     document.getElementById("sum-label").textContent = isDel ? "Delivery & setup" : "Pickup in Canton";
     document.getElementById("sum-fee").textContent = isDel ? range(FEE_LO, FEE_HI) : "Free";
     document.getElementById("sum-total").textContent = range(lo, hi);
     document.getElementById("fee-note").hidden = !isDel;
-    document.getElementById("dep-today").textContent = fmtCents(Math.round(DEPOSIT_CHARGED*q*100)/100);
+    document.getElementById("dep-today").textContent = fmtCents(DEPOSIT_CHARGED);
     document.getElementById("dep-balance").textContent = range(lo - dep, hi - dep) + " + tax";
   }
   document.querySelectorAll('input[name="method"]').forEach(function(r){ r.addEventListener("change", update); });
-  qtyEl.addEventListener("input", update);
   update();
 })();
 </script>
